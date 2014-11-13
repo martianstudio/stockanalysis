@@ -31,6 +31,9 @@ def download(symbol):
                 list.append(cell_text(td))
             if len(list) > 0:
                 csv_list.append(list)
+        regex = '/\*?"|'
+        for s in regex:
+            symbol = symbol.replace(s, '_')
         file_path = os.path.join(os.path.dirname(__file__), 'data', 'income_statement', symbol + '.csv')
         write_csv_file(csv_list, file_path)
         #print csv_list
