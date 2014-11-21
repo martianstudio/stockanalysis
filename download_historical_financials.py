@@ -16,10 +16,13 @@ def cell_text(cell):
     return " ".join(cell.stripped_strings)
 
 def log(text):
-    filename = os.path.join(os.path.dirname(__file__), 'log', 'download_finance_log_%s.txt' % date.today().isoformat().replace(':', '-'))
-    logFile = open(filename, 'a')
-    logFile.write(str(text) + '\n')
-    logFile.close()
+    try:
+        filename = os.path.join(os.path.dirname(__file__), 'log', 'download_finance_log_%s.txt' % date.today().isoformat().replace(':', '-'))
+        logFile = open(filename, 'a')
+        logFile.write(str(text) + '\n')
+        logFile.close()
+    except:
+        print sys.exc_info()
 
 def download(symbol):
     try:
